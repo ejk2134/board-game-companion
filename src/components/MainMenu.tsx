@@ -8,7 +8,6 @@ type Inputs = {
 
 const MainMenu: React.FC = () => {
   const { register, handleSubmit, watch } = useForm<Inputs>()
-  console.log('pizza')
   const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data)
 
   useEffect(() => {
@@ -22,7 +21,7 @@ const MainMenu: React.FC = () => {
         <FormInput label="Game">
           <select {...register('game')}>
             <option>Settlers of Catan</option>
-            <option>Ticket to Ride</option>
+            {/* <option>Ticket to Ride</option> */}
           </select>
         </FormInput>
       </form>

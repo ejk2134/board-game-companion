@@ -1,5 +1,5 @@
 import { colors } from '../constants/styles'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 const Header: React.FC = () => {
   return (

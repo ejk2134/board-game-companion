@@ -1,14 +1,16 @@
 import { createRoot } from 'react-dom/client'
 import Header from './components/Header'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import { colors } from './constants/styles'
 import MainMenu from './components/MainMenu'
+import SettlersOfCatanConfig from './components/SettlersOfCatanConfig'
 
 const App: React.FC = () => {
   return (
     <AppContainer>
       <Header />
-      <MainMenu />
+      {/* <MainMenu /> */}
+      <SettlersOfCatanConfig />
     </AppContainer>
   )
 }
