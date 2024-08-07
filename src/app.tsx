@@ -4,14 +4,21 @@ import { styled } from 'styled-components'
 import { colors } from './constants/styles'
 import MainMenu from './components/MainMenu'
 import SettlersOfCatanConfig from './components/SettlersOfCatanConfig'
+import { Provider } from 'react-redux'
+import { store } from './redux/store'
+import { RouterProvider } from './contexts/router'
 
 const App: React.FC = () => {
   return (
-    <AppContainer>
-      <Header />
-      {/* <MainMenu /> */}
-      <SettlersOfCatanConfig />
-    </AppContainer>
+    <Provider store={store}>
+      <RouterProvider>
+        <AppContainer>
+          <Header />
+          {/* <MainMenu /> */}
+          <SettlersOfCatanConfig />
+        </AppContainer>
+      </RouterProvider>
+    </Provider>
   )
 }
 

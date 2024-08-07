@@ -2,6 +2,8 @@ import { SubmitHandler, useFieldArray, useForm } from 'react-hook-form'
 import FormInput from './FormInput'
 import { useEffect } from 'react'
 import { styled } from 'styled-components'
+import { useDispatch } from 'react-redux'
+import { setup } from '../redux/gameConfigurationSlice'
 
 type PlayerInputs = {
   color: 'blue' | 'red' | 'orange' | 'white' | null
@@ -14,6 +16,7 @@ type Inputs = {
 }
 
 const SettlersOfCatanConfig: React.FC = () => {
+  const dispatch = useDispatch()
   const { register, handleSubmit, watch, control, setValue, getValues } =
     useForm<Inputs>({
       defaultValues: {
@@ -29,7 +32,22 @@ const SettlersOfCatanConfig: React.FC = () => {
     name: 'players',
     shouldUnregister: true,
   })
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data)
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    const { players } = data
+    /* output
+      {
+        playerCount: 3,
+        players: [
+          {
+            name: 'John',
+            color: 'blue'
+          },
+          ...
+        ]
+      }
+    */
+    dispatch(setup(players))
+  }
 
   const playerCount = watch('playerCount')
 
