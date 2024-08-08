@@ -1,9 +1,11 @@
 import { SubmitHandler, useFieldArray, useForm } from 'react-hook-form'
 import FormInput from './FormInput'
-import { useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import { styled } from 'styled-components'
 import { useDispatch } from 'react-redux'
 import { setup } from '../redux/gameConfigurationSlice'
+import RouterContext from '../contexts/router'
+import routes from '../constants/routes'
 
 type PlayerInputs = {
   color: 'blue' | 'red' | 'orange' | 'white' | null
@@ -16,6 +18,8 @@ type Inputs = {
 }
 
 const SettlersOfCatanConfig: React.FC = () => {
+  const [route, setRoute] = useContext(RouterContext)
+  console.log(route)
   const dispatch = useDispatch()
   const { register, handleSubmit, watch, control, setValue, getValues } =
     useForm<Inputs>({
@@ -34,19 +38,8 @@ const SettlersOfCatanConfig: React.FC = () => {
   })
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     const { players } = data
-    /* output
-      {
-        playerCount: 3,
-        players: [
-          {
-            name: 'John',
-            color: 'blue'
-          },
-          ...
-        ]
-      }
-    */
     dispatch(setup(players))
+    setRoute(routes.GAME)
   }
 
   const playerCount = watch('playerCount')

@@ -11,9 +11,12 @@ export interface GameConfigurationState {
 
 const initialState: GameConfigurationState = {
   players: [
-    { name: '', color: null },
-    { name: '', color: null },
-    { name: '', color: null },
+    // { name: '', color: null },
+    // { name: '', color: null },
+    // { name: '', color: null },
+    { name: 'tony', color: 'blue' },
+    { name: 'mark', color: 'red' },
+    { name: 'bill', color: 'orange' },
   ],
 }
 
@@ -22,7 +25,7 @@ export const gameConfigurationSlice = createSlice({
   initialState,
   reducers: {
     setup: (state, action) => {
-      state = action.payload
+      state.players = action.payload
     },
   },
 })
