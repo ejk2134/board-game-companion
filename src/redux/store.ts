@@ -1,12 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit'
 import gameConfigurationReducer from './gameConfigurationSlice'
 import gameReducer from './gameSlice'
+import resourcesReducer from './resourcesSlice';
 import { useSelector } from 'react-redux'
 
 export const store = configureStore({
   reducer: {
     gameConfiguration: gameConfigurationReducer,
     game: gameReducer,
+    resources: resourcesReducer,
   },
 })
 
