@@ -8,8 +8,8 @@ const SettlersOfCatanGame: React.FC = () => {
   return (
     <>
       <div>
-        {players.map((player) => (
-          <PlayerBox {...player} />
+        {players.map((player, i) => (
+          <PlayerBox {...player} key={i} />
         ))}
       </div>
       <div>
