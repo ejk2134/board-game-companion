@@ -11,12 +11,9 @@ export interface GameConfigurationState {
 
 const initialState: GameConfigurationState = {
   players: [
-    // { name: '', color: null },
-    // { name: '', color: null },
-    // { name: '', color: null },
-    { name: 'tony', color: 'blue' },
-    { name: 'mark', color: 'red' },
-    { name: 'bill', color: 'orange' },
+    { name: '', color: null },
+    { name: '', color: null },
+    { name: '', color: null },
   ],
 }
 
