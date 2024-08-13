@@ -10,10 +10,8 @@ type PlayerBoxType = {
 
 const PlayerBox: React.FC<PlayerBoxType> = ({ name, color }) => {
   const dispatch = useDispatch()
-  const state = useAppSelector((state) => state.game)
-  const player = state.players.find(
-    ({ color: statePlayerColor }) => statePlayerColor === color
-  )
+  const gameState = useAppSelector((state) => state.game)
+  const player = gameState[color]
 
   return (
     <StyledContainer>
@@ -25,98 +23,86 @@ const PlayerBox: React.FC<PlayerBoxType> = ({ name, color }) => {
         <BoxHeader>Resources</BoxHeader>
         <div>
           <button
-            onClick={() =>
-              dispatch(updateResources({ color, resources: { wool: 1 } }))
-            }
+            onClick={() => dispatch(updateResources({ [color]: { wool: 1 } }))}
           >
             + wool
           </button>
           <button
-            onClick={() =>
-              dispatch(updateResources({ color, resources: { ore: 1 } }))
-            }
+            onClick={() => dispatch(updateResources({ [color]: { ore: 1 } }))}
           >
             + ore
           </button>
           <button
             onClick={() =>
-              dispatch(updateResources({ color, resources: { lumber: 1 } }))
+              dispatch(updateResources({ [color]: { lumber: 1 } }))
             }
           >
             + lumber
           </button>
           <button
-            onClick={() =>
-              dispatch(updateResources({ color, resources: { grain: 1 } }))
-            }
+            onClick={() => dispatch(updateResources({ [color]: { grain: 1 } }))}
           >
             + grain
           </button>
           <button
-            onClick={() =>
-              dispatch(updateResources({ color, resources: { clay: 1 } }))
-            }
+            onClick={() => dispatch(updateResources({ [color]: { brick: 1 } }))}
           >
-            + clay
+            + brick
           </button>
-          <button
+          {/* <button
             onClick={() =>
-              dispatch(updateResources({ color, resources: { unknown: 1 } }))
+              dispatch(updateResources([{ color, resources: { lumber: 1 } }]))
             }
           >
             + unknown
-          </button>
+          </button> */}
         </div>
         <div>
           <button
-            onClick={() =>
-              dispatch(updateResources({ color, resources: { wool: -1 } }))
-            }
+            onClick={() => dispatch(updateResources({ [color]: { wool: -1 } }))}
           >
-            + wool
+            - wool
+          </button>
+          <button
+            onClick={() => dispatch(updateResources({ [color]: { ore: -1 } }))}
+          >
+            - ore
           </button>
           <button
             onClick={() =>
-              dispatch(updateResources({ color, resources: { ore: -1 } }))
+              dispatch(updateResources({ [color]: { lumber: -1 } }))
             }
           >
-            + ore
+            - lumber
           </button>
           <button
             onClick={() =>
-              dispatch(updateResources({ color, resources: { lumber: -1 } }))
+              dispatch(updateResources({ [color]: { grain: -1 } }))
             }
           >
-            + lumber
+            - grain
           </button>
           <button
             onClick={() =>
-              dispatch(updateResources({ color, resources: { grain: -1 } }))
+              dispatch(updateResources({ [color]: { brick: -1 } }))
             }
           >
-            + grain
+            - brick
           </button>
-          <button
+          {/* <button
             onClick={() =>
-              dispatch(updateResources({ color, resources: { clay: -1 } }))
-            }
-          >
-            + clay
-          </button>
-          <button
-            onClick={() =>
-              dispatch(updateResources({ color, resources: { unknown: -1 } }))
+              dispatch(updateResources([{ color, resources: { lumber: 1 } }]))
             }
           >
             + unknown
-          </button>
+          </button> */}
         </div>
-        <p>w: {player.resources.wool}</p>
-        <p>o: {player.resources.ore}</p>
-        <p>l: {player.resources.lumber}</p>
-        <p>g: {player.resources.grain}</p>
-        <p>c: {player.resources.clay}</p>
-        <p>?: {player.resources.unknown}</p>
+        <p>w: {player.wool}</p>
+        <p>o: {player.ore}</p>
+        <p>l: {player.lumber}</p>
+        <p>g: {player.grain}</p>
+        <p>c: {player.brick}</p>
+        {/* <p>?: {player.unknown}</p> */}
       </div>
     </StyledContainer>
   )

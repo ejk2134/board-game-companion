@@ -18,8 +18,7 @@ type Inputs = {
 }
 
 const SettlersOfCatanConfig: React.FC = () => {
-  const [route, setRoute] = useContext(RouterContext)
-  console.log(route)
+  const [_, setRoute] = useContext(RouterContext)
   const dispatch = useDispatch()
   const { register, handleSubmit, watch, control, setValue, getValues } =
     useForm<Inputs>({

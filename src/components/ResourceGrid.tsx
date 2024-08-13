@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateResource } from '../redux/resourcesSlice'
 import { RootState, useAppSelector } from '../redux/store'
+import ResourceGridRow from './ResourceGridRow'
 
 const ResourceGrid: React.FC = () => {
   const dispatch = useDispatch()
@@ -61,50 +62,53 @@ const ResourceGrid: React.FC = () => {
       </thead>
       <tbody>
         {rows.map((row, rowIndex) => (
-          <tr key={rowIndex}>
-            <td style={{ border: '1px solid black', padding: '5px' }}>{row}</td>
-            {columns.map((col, colIndex) => (
-              <td
-                key={colIndex}
-                style={{ border: '1px solid black', padding: '5px' }}
-              >
-                <div
-                  style={{
-                    display: 'grid',
-                    gridTemplateColumns: '1fr 1fr',
-                    gap: '5px',
-                  }}
-                >
-                  {colors.map((color, colorIndex) => (
-                    <input
-                      key={colorIndex}
-                      type="number"
-                      min="0"
-                      value={resources[row][col][color]}
-                      onChange={(e) =>
-                        handleChange(
-                          row,
-                          col,
-                          color,
-                          parseInt(e.target.value) || 0
-                        )
-                      }
-                      style={{
-                        backgroundColor: color,
-                        color: color === 'white' ? 'black' : 'white',
-                        padding: '3px',
-                        border: 'none',
-                        width: '40px',
-                        textAlign: 'center',
-                        fontSize: '12px',
-                        opacity: resources[row][col][color] === 0 ? 0.4 : 1,
-                      }}
-                    />
-                  ))}
-                </div>
-              </td>
-            ))}
+          <tr key={row}>
+            <ResourceGridRow dieResult={row} colors={colors} key={row} />
           </tr>
+          //   <tr key={rowIndex}>
+          //     <td style={{ border: '1px solid black', padding: '5px' }}>{row}</td>
+          //     {columns.map((col, colIndex) => (
+          //       <td
+          //         key={colIndex}
+          //         style={{ border: '1px solid black', padding: '5px' }}
+          //       >
+          //         <div
+          //           style={{
+          //             display: 'grid',
+          //             gridTemplateColumns: '1fr 1fr',
+          //             gap: '5px',
+          //           }}
+          //         >
+          //           {colors.map((color, colorIndex) => (
+          //             <input
+          //               key={colorIndex}
+          //               type="number"
+          //               min="0"
+          //               value={resources[row][col][color]}
+          //               onChange={(e) =>
+          //                 handleChange(
+          //                   row,
+          //                   col,
+          //                   color,
+          //                   parseInt(e.target.value) || 0
+          //                 )
+          //               }
+          //               style={{
+          //                 backgroundColor: color,
+          //                 color: color === 'white' ? 'black' : 'white',
+          //                 padding: '3px',
+          //                 border: 'none',
+          //                 width: '40px',
+          //                 textAlign: 'center',
+          //                 fontSize: '12px',
+          //                 opacity: resources[row][col][color] === 0 ? 0.4 : 1,
+          //               }}
+          //             />
+          //           ))}
+          //         </div>
+          //       </td>
+          //     ))}
+          //   </tr>
         ))}
       </tbody>
     </table>
